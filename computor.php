@@ -70,14 +70,14 @@ foreach ($left as $key => $value)
 		//cas ou ca commence par un "-"
 		if ($result[0] == "" )
 		{
-		array_splice($result,0,1);
+			array_splice($result,0,1);
 		}
 
 		$newleft = array_merge($newleft,$result);
 	}
 	else
 	{
-	$newleft[] = $left[$key];
+		$newleft[] = $left[$key];
 	}
 
 }
@@ -103,13 +103,13 @@ foreach ($right as $key => $value)
 		//cas ou ca commence par un "-"
 		if ($result[0] == "" )
 		{
-		array_splice($result,0,1);
+			array_splice($result,0,1);
 		}
 		$newright = array_merge($newright,$result);
 	}
 	else
 	{
-	$newright[] = $right[$key];
+		$newright[] = $right[$key];
 	}
 
 }
@@ -161,6 +161,34 @@ foreach ($newright as $key => $value)
 }
 
 print_r($degrees);
+
+//print in reduced form
+echo "Reduced form : ";
+foreach ($degrees as $key => $value)
+{
+	if ($key != 0)
+	{
+		if ($value > 0)
+		{
+			echo " + ";
+		}
+		else
+		{
+			echo " ";
+		}
+	}
+	echo "$value * X^";
+	echo $key;
+}
+echo " = 0\n";
+
+echo "Polynomial degree : ". ($maxdeg = max(array_keys($degrees)))."\n";
+
+if ($maxdeg > 2)
+{
+	echo "The polynomial degree is stricly greater than 2, I can't solve.\n";
+	die();
+}
 
 
 
