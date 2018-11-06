@@ -2,31 +2,16 @@
 
 if ($argc != 2)
 	die("un seul argument");
-//echo $argv[1];
-//$eq = str_split($argv[1]);
 $eq = $argv[1];
 
 $eq = str_replace(' ','',$eq);
 
-$a = 0;
-$b = 0;
-$c = 0;
-
 $twoparts = explode("=", $eq);
-print_r($twoparts);
 
-
-//TODO
-//if not two parts die
-//
 
 $left = explode('+', $twoparts[0]);
 $right = explode('+', $twoparts[1]);
 
-echo "simple split with +\n";
-
-//print_r($left);
-//print_r($right);
 
 foreach ($left as $key => $value)
 {
@@ -47,15 +32,14 @@ foreach ($right as $key => $value)
 
 
 
-print_r($left);
-print_r($right);
+//print_r($left);
+//print_r($right);
 
 $newleft = array();
 foreach ($left as $key => $value)
 {
 	if (strpos ($left[$key],'-') !== false)
 	{
-		echo "ici";
 		$result = explode('-',$left[$key]);
 		print_r($result);
 		//array_splice($left,$key,1);
@@ -87,7 +71,6 @@ foreach ($right as $key => $value)
 {
 	if (strpos ($right[$key],'-') !== false)
 	{
-		echo "ici";
 		$result = explode('-',$right[$key]);
 		//print_r($result);
 		//array_splice($left,$key,1);
@@ -114,10 +97,10 @@ foreach ($right as $key => $value)
 
 }
 
-echo "Startingpoint";
+//echo "Startingpoint";
 
-print_r($newleft);
-print_r($newright);
+//print_r($newleft);
+//print_r($newright);
 
 $degrees = array();
 
@@ -160,7 +143,7 @@ foreach ($newright as $key => $value)
 	}
 }
 
-print_r($degrees);
+//print_r($degrees);
 
 //print in reduced form
 echo "Reduced form : ";
