@@ -182,7 +182,27 @@ foreach ($degrees as $key => $value)
 }
 echo " = 0\n";
 
+//TODO : rm cases where value is 0
+
 echo "Polynomial degree : ". ($maxdeg = max(array_keys($degrees)))."\n";
+
+
+//case where all real numbers are solution
+//TODO : if empty once done removing zeros
+$fullzero = true;
+foreach ($degrees as $key => $value)
+{
+	if ($value != 0)
+	{
+	$fullzero = false;
+	}
+}
+if ($fullzero)
+{
+	die("It seems any real number is a solution to this equation");
+}
+
+
 
 if ($maxdeg > 2)
 {
@@ -190,10 +210,49 @@ if ($maxdeg > 2)
 	die();
 }
 
+//TODO
+//first degree
+//
+if ($maxdeg == 1)
+{
+	echo "One solution, x = ";
+	echo ((-1) * $degrees[0]) / ($degrees[1])."\n";
 
+	die();
+}
 
+$discriminant = ($degrees[1])*($degrees[1]) - (4 * ($degrees[2] * $degrees[0]));
+echo "Discriminant : ".$discriminant."\n";
 
+if ($discriminant == 0)
+{
+	echo "One solution x = ";
+	echo ((-1) * $degrees[1])/(2 * $degrees[2])."\n";
+}
 
+if ($discriminant > 0)
+{
+	echo "Two solutions : \n";
+	echo "x1 = ";
+	echo (((-1) * $degrees[1]) + sqrt($discriminant)) / (2 * $degrees[2]);
+	echo "\n";
+	echo "x2 = ";
+	echo (((-1) * $degrees[1]) - sqrt($discriminant)) / (2 * $degrees[2]);
+	echo "\n";
+
+}
+
+if ($discriminant < 0)
+{
+	echo "No solutions in R, solutions in C : \n";
+	echo "x1 = ";
+	echo '('.((-1) * $degrees[1]).' + i * sqrt('.abs($discriminant).')) / '. (2 * $degrees[2]);
+	echo "\n";
+	echo "x2 = ";
+	echo '('.((-1) * $degrees[1]).' - i * sqrt('.abs($discriminant).')) / '. (2 * $degrees[2]);
+	echo "\n";
+
+}
 
 
 
