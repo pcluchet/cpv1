@@ -168,7 +168,7 @@ foreach ($degrees as $key => $value)
 {
 	if ($key != 0)
 	{
-		if ($value > 0)
+		if ($value >= 0)
 		{
 			echo " + ";
 		}
@@ -182,22 +182,25 @@ foreach ($degrees as $key => $value)
 }
 echo " = 0\n";
 
-//TODO : rm cases where value is 0
 
-echo "Polynomial degree : ". ($maxdeg = max(array_keys($degrees)))."\n";
-
-
-//case where all real numbers are solution
-//TODO : if empty once done removing zeros
-$fullzero = true;
 foreach ($degrees as $key => $value)
 {
-	if ($value != 0)
+	if ($value == 0)
 	{
-	$fullzero = false;
+	unset($degrees[$key]);
 	}
 }
-if ($fullzero)
+
+$maxdeg = 0;
+if (count($degrees) != 0)
+{
+$maxdeg = max(array_keys($degrees));
+}
+
+echo "Polynomial degree : ". ($maxdeg)."\n";
+
+
+if (count($degrees) == 0)
 {
 	die("It seems any real number is a solution to this equation");
 }
@@ -211,8 +214,17 @@ if ($maxdeg > 2)
 }
 
 //TODO
-//first degree
+//0's degree
 //
+//
+	
+if ($maxdeg == 0)
+{
+	echo "No solution\n";
+	die();
+
+}
+	
 if ($maxdeg == 1)
 {
 	echo "One solution, x = ";
