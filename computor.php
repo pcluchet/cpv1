@@ -114,9 +114,53 @@ foreach ($right as $key => $value)
 
 }
 
+echo "Startingpoint";
 
 print_r($newleft);
 print_r($newright);
+
+$degrees = array();
+
+foreach ($newleft as $key => $value)
+{
+
+	$pos = 0;
+	if (($pos = strpos($newleft[$key], 'X^')) !== false)
+	{
+		$degree = substr($newleft[$key],$pos + 2);
+		$number = explode('*',$newleft[$key]);	
+		$number = $number[0];
+		if (!isset($degrees[$degree]))
+		{
+			$toadd = array($degree => 0);
+			$degrees = $degrees + $toadd;
+		}
+		$degrees[$degree] += (float)$number;
+
+	}
+}
+
+foreach ($newright as $key => $value)
+{
+
+
+	$pos = 0;
+	if (($pos = strpos($newright[$key], 'X^')) !== false)
+	{
+		$degree = substr($newright[$key],$pos + 2);
+		$number = explode('*',$newright[$key]);	
+		$number = $number[0];
+		if (!isset($degrees[$degree]))
+		{
+			$toadd = array($degree => 0);
+			$degrees = $degrees + $toadd;
+		}
+		$degrees[$degree] -= (float)$number;
+
+	}
+}
+
+print_r($degrees);
 
 
 
